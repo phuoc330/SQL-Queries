@@ -1,0 +1,1 @@
+begin mo_global.set_policy_context('S',404); end;
