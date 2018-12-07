@@ -1,0 +1,6 @@
+SELECT *
+FROM
+apps.po_requisition_headers_all a
+WHERE
+a.creation_date BETWEEN TO_DATE('01/08/2017', 'DD/MM/YYYY')
+and TO_DATE('30/08/2017', 'DD/MM/YYYY');
