@@ -1,0 +1,8 @@
+SELECT fcr.request_id, fcr.requested_start_date, aa.picking_rule_id, aa.name 
+FROM apps.fnd_concurrent_requests fcr, apps.WSH_PICKING_RULES aa
+where fcr.concurrent_program_id = 00000
+and fcr.argument1 = aa.picking_rule_id 
+and fcr.requested_by = 00000
+and fcr.requested_start_date BETWEEN TO_DATE('01/08/2017', 'DD/MM/YYYY')
+and TO_DATE('30/08/2017', 'DD/MM/YYYY')
+order by fcr.requested_start_date;
