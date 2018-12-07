@@ -1,0 +1,2 @@
+select Distinct (count(1) over (partition by segment1)) as type, a.segment1
+from apps.po_headers_all a;
