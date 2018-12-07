@@ -1,0 +1,15 @@
+SELECT distinct pha.segment1 po_number
+       ,aia.invoice_num invoice_number
+       ,rsh.receipt_num receipt_number
+FROM apps.po_headers_all pha
+       ,apps.po_distributions_all pda
+       ,apps.ap_invoice_distributions_all aid
+       ,apps.ap_invoices_all aia
+       ,apps.rcv_shipment_lines rsl
+       ,apps.rcv_shipment_headers rsh
+ WHERE pha.po_header_id=pda.po_header_id
+   AND aid.po_distribution_id=pda.po_distribution_id
+   AND aia.invoice_id=aid.invoice_id
+   AND rsl.po_header_id=pha.po_header_id
+   AND rsl.shipment_header_id=rsh.shipment_header_id
+   AND pha.segment1=nvl(20000597,pha.segment1);
