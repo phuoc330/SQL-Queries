@@ -1,0 +1,13 @@
+SELECT b.component_name, 
+c.parameter_name, 
+a.parameter_value 
+FROM apps.fnd_svc_comp_param_vals a, 
+apps.fnd_svc_components b, 
+apps.fnd_svc_comp_params_b c 
+WHERE b.component_id = a.component_id 
+AND b.component_type = c.component_type 
+AND c.parameter_id = a.parameter_id 
+AND c.encrypted_flag = 'N' 
+AND b.component_name like '%Mailer%' 
+AND c.parameter_name in ('INBOUND_SERVER','OUTBOUND_SERVER', 'REPLYTO') 
+ORDER BY c.parameter_name;
