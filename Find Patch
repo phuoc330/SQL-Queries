@@ -1,0 +1,16 @@
+select distinct aap.patch_name ,aprb.application_short_name
+from 
+apps.ad_applied_patches aap,
+apps.ad_patch_drivers apd,
+apps.ad_patch_runs apr,
+apps.ad_patch_run_bugs aprb
+where 
+aap.applied_patch_id = apd.applied_patch_id
+and apd.patch_driver_id = apr.patch_driver_id
+and apr.patch_run_id = aprb.patch_run_id
+--and aprb.applied_flag = 'Y'
+and aap.patch_name in (
+'22134672'
+)
+group by aap.patch_name, aprb.application_short_name
+order by aap.patch_name asc;
