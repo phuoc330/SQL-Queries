@@ -1,0 +1,4 @@
+SELECT * --adb.bug_number,adb.ad_patch
+FROM apps.ad_bugs adb
+WHERE adb.bug_number like '22134%'
+and bug_id = 590900;
