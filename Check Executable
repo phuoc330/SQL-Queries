@@ -1,0 +1,16 @@
+select
+prog.user_concurrent_program_name "program name",
+prog.concurrent_program_name "program short name",
+appl.application_name "program application name",
+prog.description "program description",
+exe.executable_name "executable name",
+exe.execution_file_name "executable file name",
+decode( exe.execution_method_code, 'I', 'PLSQL Stored Procedure', 'P', 'Report', 'L', 'SQL Loader','Q','SQL*Plus', exe.execution_method_code) "execution method"
+from
+apps.fnd_executables exe,
+apps.fnd_application_tl appl,
+apps.fnd_concurrent_programs_vl prog
+where exe.application_id = appl.application_id
+AND exe.executable_id = prog.executable_id
+AND appl.language='US'
+AND prog.user_concurrent_program_name = '00000';
