@@ -1,0 +1,9 @@
+SELECT fcp.user_concurrent_program_name, fu.user_name, fu.description , to_char(fcr.requested_start_date ,'DD-MON-RRRR HH24:MI:SS') request_date, fcr.*
+FROM apps.fnd_concurrent_requests fcr,
+     apps.fnd_concurrent_programs_tl fcp ,
+     apps.fnd_user fu
+where  1=1
+--and fcr.concurrent_program_id = 381092
+and fcr.concurrent_program_id = fcp.concurrent_program_id
+and fcp.user_concurrent_program_name like '%out%'
+and fu.user_id = fcr.requested_by;
