@@ -1,0 +1,28 @@
+SELECT
+substr(pro1.user_profile_option_name,1,35) Profile,
+decode(pov.level_id,
+10001,'Site',
+10002,'Application',
+10003,'Resp',
+10004,'User') Option_Level,
+decode(pov.level_id,
+10001,'Site',
+10002,appl.application_short_name,
+10003,resp.responsibility_name,
+10004,u.user_name) Level_Value,
+nvl(pov.profile_option_value,'Is Null') Profile_option_Value
+FROM 
+fnd_profile_option_values pov,
+fnd_responsibility_tl resp,
+fnd_application appl,
+fnd_user u,
+fnd_profile_options pro,
+fnd_profile_options_tl pro1
+WHERE
+pro.profile_option_name = pro1.profile_option_name
+and  pro.profile_option_id = pov.profile_option_id
+and  resp.responsibility_name like 'Trade'
+and  pov.level_value = resp.responsibility_id (+)
+and  pov.level_value = appl.application_id (+)
+and  pov.level_value = u.user_id (+)
+order by 1,2;
