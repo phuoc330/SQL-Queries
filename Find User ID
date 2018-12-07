@@ -1,0 +1,1 @@
+SELECT user_id FROM apps.fnd_user WHERE user_name = '000000';
